@@ -4,7 +4,14 @@ import { MdDonutLarge, MdOutlineMoreVert } from "react-icons/md";
 import { BiMessageDetail } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import Avatar from "../Assets/Avatar.jpg";
-import styledComponents from "styled-components";
+import Avatar1 from "../Assets/User2.jpg";
+
+const friendInfo = [
+  { name: "Waqar Khan", message: "Recent Message", image: Avatar1 },
+  { name: "Imran Ali", message: "Recent Message", image: Avatar },
+  { name: "Iftikhar ahmed", message: "Recent Message", image: Avatar1 },
+];
+
 const SideBar = (props) => {
   return (
     <Container>
@@ -37,15 +44,19 @@ const SideBar = (props) => {
       {/* Contect Box */}
       <ContactBox>
         <h2>Add New Chat</h2>
-        <FriendBox>
-          <FriendPhoto>
-            <img src={Avatar} alt="Avatar/jpg" />
-          </FriendPhoto>
-          <FriendInfo>
-            <h3>Waqar Khan</h3>
-            <p>Recent Messages</p>
-          </FriendInfo>
-        </FriendBox>
+        {friendInfo.map((item, index) => {
+          return (
+            <FriendBox>
+              <FriendPhoto>
+                <img src={item.image} alt="Avatar/jpg" />
+              </FriendPhoto>
+              <FriendInfo>
+                <h3>{item.name}</h3>
+                <p>{item.message}</p>
+              </FriendInfo>
+            </FriendBox>
+          );
+        })}
       </ContactBox>
     </Container>
   );
@@ -53,13 +64,13 @@ const SideBar = (props) => {
 
 // Styled Components started below
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   background: #f5f3f2;
 `;
 
-const SideBarNav = styled.div`
+export const SideBarNav = styled.div`
   width: 100%;
   background: lightgrey;
   display: flex;
@@ -67,12 +78,12 @@ const SideBarNav = styled.div`
   justify-content: space-between;
   align-items: center;
   background: #e3dede;
-  height: 12vh;
+  height: 14vh;
   border-right: 2px solid #d4d3d2;
 `;
 
 const SideBarAvatar = styled.div`
-  width: 15%;
+  width: 20%;
   margin-left: 1rem;
   border-radius: 5rem;
   height: 100%;
@@ -92,7 +103,7 @@ const SideBarRight = styled.div`
   justify-content: space-around;
 `;
 
-const ButtonIcon = styled.button`
+export const ButtonIcon = styled.button`
   font-size: 1.5rem;
   background: none;
   border: none;
@@ -191,8 +202,8 @@ const FriendBox = styled.li`
 `;
 
 const FriendPhoto = styled.div`
-  width: 25%;
-  height: 100%;
+  width: 20%;
+  height: 70px;
   border-radius: 5rem;
   text-align: center;
   cursor: pointer;
@@ -212,10 +223,12 @@ const FriendInfo = styled.div`
   & h3 {
     width: 100%;
     margin: 0.2rem;
+    overflow-x: hidden;
   }
   & p {
     width: 100%;
     margin: 0.2rem;
+    overflow-y: hidden;
   }
 `;
 
